@@ -1,0 +1,7 @@
+.drop-zone {
+    height: 100px;
+    width: 80%;
+    background-color: rgba(1, 1, 1, .15);
+    border-radius: 5px;
+    border: dashed white 2px;
+}

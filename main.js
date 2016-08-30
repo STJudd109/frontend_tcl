@@ -4,6 +4,11 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+const fs = require('fs')
+const os = require('os')
+const path = require('path')
+const shell = electron.shell
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -58,7 +63,24 @@ const ipc = require('electron').ipcMain;
 
 ipc.on('get-app-path', function (event) {
   event.sender.send('got-app-path', app.getAppPath())
-})
+});
 
+// Sets up the printing to pdf
+
+ipc.on('print-to-pdf', function (event) {
+  const pdfPath = path.join(os.tmpdir(), 'print.pdf')
+  const win = BrowserWindow.fromWebContents(event.sender)
+  // Use default printing options
+  win.webContents.printToPDF({}, function (error, data) {
+    if (error) throw error
+    fs.writeFile(pdfPath, data, function (error) {
+      if (error) {
+        throw error
+      }
+      shell.openExternal('file://' + pdfPath)
+      event.sender.send('wrote-pdf', pdfPath)
+    })
+  })
+});
 
 

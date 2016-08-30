@@ -8,6 +8,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="photon.css">
+    <link rel="stylesheet"  href="style.css">
 
     <!-- Electron Javascript -->
     <!--<script src="renderer.js" charset="utf-8"></script>-->
@@ -17,14 +18,14 @@
     <!-- Wrap your entire app inside .window -->
     <div class="window">
         <header class="toolbar toolbar-header">
-  <h1 class="title">Header with actions</h1>
+  <h1 class="title">Auto-test</h1>
 
   <div class="toolbar-actions">
     <div class="btn-group">
       <button class="btn btn-default active">
         <span class="icon icon-home"></span>
       </button>
-      <button class="btn btn-default">
+      <button class="btn btn-default" id="open-file-manager">
         <span class="icon icon-folder"></span>
       </button>
       <button class="btn btn-default">
@@ -37,34 +38,28 @@
         <span class="icon icon-shuffle"></span>
       </button>
     </div>
-
-    <button class="btn btn-default">
-      <span class="icon icon-home icon-text"></span>
-      Filters
-    </button>
-
-    <button class="btn btn-default btn-dropdown pull-right">
-      <span class="icon icon-megaphone"></span>
-    </button>
   </div>
 </header>
   <div class="window-content">
    
     <div class="pane-group">
-      <div class="pane-sm sidebar padded-more"><h2>Auto-Test</h2>
-      <button id="app-info">Initialize</button>
-      <button id="open-ex-links">open</button>
-      <p id="got-app-info"></p>
-      </div>
-      <div class="pane">
-        <div class="padded-more">
-          <h3>Settings</h3>
-          <p>
+      <div class="pane-sm sidebar padded-more"><h3>Settings</h3>
+      <p>
             Fill out the info and begin testing
           </p>
           <input type="text" name="ip" value="192.168.1.1">
-          <button id="open-file-manager">find script</button> 
-          <input id="path" type="path" name="path" value="file://">
+          <input id="path" type="text" name="path" value="path to output">
+      <button id="app-info">Initialize</button>
+      <button id="open-ex-links">Open</button>
+
+      <p id="got-app-info"></p>
+      <div id="holder" class="drop-zone"><h4 class="text-center">DROP ZONE</h4></div>
+      </div>
+      <div class="pane">
+        <div class="padded-more">
+          <h4>Outputs</h4> <button id="print-pdf">to PDF</button>
+          <p id="output">
+            Once testing starts, outputs will populate here...<br></p>
         </div>
       </div>
     </div>
