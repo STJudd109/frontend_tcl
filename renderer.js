@@ -10,6 +10,7 @@ const os = require('os')
 const fileManagerBtn = document.getElementById('open-file-manager')
 const appInfoBtn = document.getElementById('app-info')
 
+
 appInfoBtn.addEventListener('click', function () {
   ipc.send('get-app-path');
 });
@@ -26,6 +27,7 @@ ipc.on('got-app-path', function (event, path) {
 
 fileManagerBtn.addEventListener('click', function (event) {
   shell.showItemInFolder(os.homedir())
+  shell.beep()
 })
 
 
